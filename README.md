@@ -1,5 +1,5 @@
 ---
-title: First Agent Template
+title: Hugging Face Agent course Unit 1
 emoji: ⚡
 colorFrom: pink
 colorTo: yellow
