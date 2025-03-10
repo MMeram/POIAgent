@@ -4,16 +4,14 @@ import os
 
 # Add the project root directory to Python's path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from tools.mapbox_tools import MapboxTools
+from tools.mapbox_tools import geocode_location, search_nearby_places
 import os
 
-# Initialize Mapbox tools with your access token
-MAPBOX_ACCESS_TOKEN = os.environ.get("MAPBOX_ACCESS_TOKEN")
-mapbox = MapboxTools(MAPBOX_ACCESS_TOKEN)
+
 
 def explore_restaurants_in_berlin():
     # Step 1: Convert the location "Berlin" to coordinates
-    location_result = mapbox.geocode_location("Get me the restaurants around Berlin City Center, Germany")
+    location_result = geocode_location("Get me the restaurants around Berlin City Center, Germany")
     
     if not location_result["success"]:
         return f"Failed to geocode location: {location_result['message']}"
@@ -29,7 +27,7 @@ def explore_restaurants_in_berlin():
     radius = 1000
     
     # Step 3: Search for restaurants near the coordinates
-    restaurants = mapbox.search_nearby_places(
+    restaurants = search_nearby_places(
         latitude=lat,
         longitude=lng,
         radius=radius,
